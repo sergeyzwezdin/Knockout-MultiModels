@@ -6,9 +6,21 @@ Plugin for Knockout JS library which allows to use few view models for single vi
 Usage
 ------
 
-Just use **ko.attach("<name>", viewModel)** and **ko.detach("<name>")** methods instead of **ko.applyBindings()**.
+Just use <code>ko.attach("<name>", viewModel)</code> and <code>ko.detach("<name>")</code> methods instead of <code>ko.applyBindings()</code>.
 
 To assign HTML element with view model use **data-model** attribute with name of view model.
+
+**Attaching view model**
+<pre>var model = { Text: ko.observable("Some text") };
+ko.attach("FirstModel", model);</pre>
+
+**Detaching view model**
+<pre>ko.detach("FirstModel");</pre>
+
+**HTML**
+<pre>&lt;div data-model=&quot;FirstModel&quot;&gt;
+	&lt;p data-bind=&quot;text: Text&quot;&gt;&lt;/p&gt;
+&lt;/div&gt;</pre>
 
 Dependencies
 ------------
