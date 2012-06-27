@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Knockout JS - MultiModels plugin samples</title>
+
+    <!--Dependencies-->
+    <script type="text/javascript" src="lib/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="lib/knockout-2.1.0.js"></script>
+    <script type="text/javascript" src="lib/jquery.livequery.js"></script>
+
+    <!--Plugin-->
+    <script type="text/javascript" src="lib/knockout.multimodels-0.1.min.js"></script>
+
+    <!--Styling -->
+	<link rel="stylesheet" href="css/reset.css" type="text/css"/>
+	<link rel="stylesheet" href="css/style.css" type="text/css"/>
+	<link rel="stylesheet" href="css/shCore.css" type="text/css"/>
+	<link rel="stylesheet" href="css/shThemeDefault.css" type="text/css"/>
+
+    <script type="text/javascript" src="js/shCore.js"></script>
+	<script type="text/javascript" src="js/shBrushXml.js"></script>
+	<script type="text/javascript" src="js/shBrushCss.js"></script>
+	<script type="text/javascript" src="js/shBrushJScript.js"></script>
+</head>
+<body>
+    <div class="central-column">
+        <h1>MultiModels plugin for Knockout JS</h1>
+        <p>Plugin for Knockout JS library which allows to use few view models for single view.</p>
+
+        <h2>Usage</h2>
+        <p>Just use <strong>ko.attach("&lt;name&gt;", viewModel)</strong> and <strong>ko.detach("&lt;name&gt;")</strong> methods instead of <strong>ko.applyBindings()</strong>.</p>
+        <p>To assign HTML element with view model use <strong>data-model</strong> attribute with name of view model.</p>
+        <h3>Javascript</h3>
+		    <script type="syntaxhighlighter" class="brush: js"><![CDATA[
+                // first view model
+                var model1 = {
+                    Title: ko.observable("Model 1"),
+                    Count: ko.observable(0),
+                    OnClick: function () {
+                        this.Count(this.Count() + 1);
+                    }
+                };
+
+                ko.attach("MyModel1", model1);
+
+                // second view model
+                var model2 = {
+                    Title: ko.observable("Model 2"),
+                    Count: ko.observable(0),
+                    OnClick: function () {
+                        this.Count(this.Count() + 1);
+                    }
+                };
+
+                ko.attach("MyModel2", model2);
+
+                // third view model
+                ko.attach("MyModel3", {
+                    Title: ko.observable("Model 3"),
+                    Count: ko.observable(0),
+                    OnClick: function () {
+                        this.Count(this.Count() + 1);
+                    }
+                });]]></script>
+
+        <h3>Markup</h3>
+		    <script type="syntaxhighlighter" class="brush: xml"><![CDATA[
+            <div data-model="MyModel1">
+                <h1 data-bind="text: Title"></h1>
+                <p>Count of clicks is <span data-bind="text: Count"></span></p>
+                <button data-bind="click: OnClick">Click me!</button>
+            </div>
+
+            <div data-model="MyModel2">
+                <h1 data-bind="text: Title"></h1>
+                <p>Count of clicks is <span data-bind="text: Count"></span></p>
+                <button data-bind="click: OnClick">Click me!</button>
+            </div>
+
+            <div data-model="MyModel3">
+                <h1 data-bind="text: Title"></h1>
+                <p>Count of clicks is <span data-bind="text: Count"></span></p>
+                <button data-bind="click: OnClick">Click me!</button>
+            </div>]]></script>
+
+
+        <h2>Dependencies</h2>
+        <ul class="dependencies">
+            <li>Jquery 1.7.1+</li>
+            <li>Livequery 1.1.1+</li>
+            <li>Knockout JS 2.1.0+</li>
+        </ul>
+
+        <h2>Live demo</h2>
+        <div class="results">
+            <div data-model="MyModel1">
+                <h1 data-bind="text: Title"></h1>
+                <p>Count of clicks is <span data-bind="text: Count"></span></p>
+                <button data-bind="click: OnClick">Click me!</button>
+            </div>
+
+            <div data-model="MyModel2">
+                <h1 data-bind="text: Title"></h1>
+                <p>Count of clicks is <span data-bind="text: Count"></span></p>
+                <button data-bind="click: OnClick">Click me!</button>
+            </div>
+
+            <div data-model="MyModel3">
+                <h1 data-bind="text: Title"></h1>
+                <p>Count of clicks is <span data-bind="text: Count"></span></p>
+                <button data-bind="click: OnClick">Click me!</button>
+            </div>
+        </div>
+		<div class="footer">
+			<ul>
+				<li>License: <a href="http://www.opensource.org/licenses/mit-license.php">MIT http://www.opensource.org/licenses/mit-license.php</a></li>
+				<li>Project Home: <a href="https://github.com/sergun/Knockout-MultiModels">https://github.com/sergun/Knockout-MultiModels</a></li>
+			</ul>
+		</div>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            SyntaxHighlighter.all();
+
+            var model1 = {
+                Title: ko.observable("Model 1"),
+                Count: ko.observable(0),
+                OnClick: function () {
+                    this.Count(this.Count() + 1);
+                }
+            };
+
+            ko.attach("MyModel1", model1);
+
+            var model2 = {
+                Title: ko.observable("Model 2"),
+                Count: ko.observable(0),
+                OnClick: function () {
+                    this.Count(this.Count() + 1);
+                }
+            };
+
+            var model3 = {
+                Title: ko.observable("Model 3"),
+                Count: ko.observable(0),
+                OnClick: function () {
+                    this.Count(this.Count() + 1);
+                }
+            };
+
+            ko.attach("MyModel2", model2);
+            ko.attach("MyModel3", model3);
+        });
+    </script>
+</body>
+</html>
