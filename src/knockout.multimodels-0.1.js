@@ -71,6 +71,13 @@
         refreshBindings(viewModelName);
     };
 
+    ko.resolve = function (viewModelName) {
+        /// <summary>Returns view model from list of view models.</summary>
+
+        checkViewModelName(viewModelName);
+        return _viewModels[viewModelName];
+    };
+
     $("*[data-model]").livequery(function () {
         refreshBindings($(this).attr("data-model"));
     });
