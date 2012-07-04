@@ -45,9 +45,10 @@
                 var currentViewModel = _viewModels[currentViewModelName];
                 var currentElement = $(this).get(0);
 
-                ko.cleanNode(currentElement);
+                // we don't rebind to alreay binded elements (therefore knockoutjs have trouble with it)
+                var isBinded = !!ko.dataFor(currentElement);
 
-                if (currentViewModel != null)
+                if ((currentViewModel != null) && (isBinded==false))
                     ko.applyBindings(currentViewModel, currentElement);
             }
         });
